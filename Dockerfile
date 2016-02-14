@@ -17,7 +17,9 @@ RUN \
   wget https://ghost.org/zip/ghost-latest.zip && \
   unzip ghost-latest.zip -d /ghost && \
   cd /ghost && \
-  npm install --production
+  npm install --production && \
+  sed 's/127.0.0.1/0.0.0.0/' /ghost/config.example.js > /ghost/config.js && \
+  useradd ghost --home /ghost
 
 # Add files.
 ADD start.bash /ghost-start
